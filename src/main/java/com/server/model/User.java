@@ -1,10 +1,11 @@
-package com.model;
+package com.server.model;
 
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @NoArgsConstructor
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 @Getter
 @Setter
+@Table(name = "app_user")
 public class User {
 
     @Id @GeneratedValue

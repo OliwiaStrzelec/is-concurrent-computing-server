@@ -1,26 +1,24 @@
-package com.controller;
+package com.server.controller;
 
-import com.model.User;
-import com.repository.UserRepository;
+import com.server.exception.ResourceNotFoundException;
+import com.server.model.User;
+import com.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserRepository repository;
 
     @GetMapping()
-    public List<User> getAllUsers() {
-        return repository.findAll();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/{id}")
@@ -32,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping()
-    public User createUser(@Valid @RequestBody User user) {
-        return repository.save(user);
+    public ResponseEntity<User>  createUser(@Valid @RequestBody User user) {
+        return ResponseEntity.ok(repository.save(user));
     }
 
     @PutMapping("/{id}")
@@ -47,14 +45,11 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId)
-            throws ResourceNotFoundException {
+    public ResponseEntity deleteUser(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
         User user = repository.findById(userId)
                 .orElseThrow(() -> getResourceNotFoundException(userId));
         repository.delete(user);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return ResponseEntity.ok().build();
     }
 
     private ResourceNotFoundException getResourceNotFoundException(@PathVariable("id") Long userId) {
