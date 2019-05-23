@@ -2,10 +2,7 @@ package com.server.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -18,6 +15,10 @@ public class User {
 
     @Id @GeneratedValue
     private Long id;
+
     private @NonNull String name;
+
+    private @NonNull String username;
+
     private @NonNull String password;
 }

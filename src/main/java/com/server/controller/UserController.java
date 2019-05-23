@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<User>  createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         return ResponseEntity.ok(repository.save(user));
     }
 
