@@ -22,11 +22,11 @@ public class UserController {
         return ResponseEntity.ok(repository.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId)
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable(value = "username") String username)
             throws ResourceNotFoundException {
-        User user = repository.findById(userId)
-                .orElseThrow(() -> getResourceNotFoundException(userId));
+        User user = repository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for this username :: " + username));
         return ResponseEntity.ok().body(user);
     }
 
