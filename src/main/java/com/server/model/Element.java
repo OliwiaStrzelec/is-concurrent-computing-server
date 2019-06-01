@@ -4,6 +4,8 @@ package com.server.model;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +16,9 @@ import javax.persistence.Table;
 @Setter
 @Table(name = "app_element")
 public class Element {
+    @Id
+    @GeneratedValue
+    private Long id;
     private Long fileid;
     private int nodeid;
     private int domid;
@@ -25,6 +30,7 @@ public class Element {
     private int node_6;
     private int node_7;
     private int node_8;
+
     public Element(Long file, int id, int dom, int n1, int n2, int n3, int n4, int n5, int n6, int n7, int n8){
         this.fileid=file;
         this.nodeid=id;
