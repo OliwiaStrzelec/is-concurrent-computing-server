@@ -11,17 +11,17 @@ import java.util.Date;
 @EqualsAndHashCode
 @Getter
 @Setter
-@Table(name = "app_files")
-public class Files {
+@Table(name = "app_file")
+public class File {
     @Id @GeneratedValue
     private Long id;
-
     private @NonNull String name;
     @CreationTimestamp
     private Date added;
-    private String addedby;
-    public Files(String name, String user) {
-        this.addedby = user;
+    private String addedBy;
+
+    public File(String name, String user) {
+        this.addedBy = user;
         this.name = name;
     }
 }

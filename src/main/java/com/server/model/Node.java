@@ -13,12 +13,16 @@ import javax.persistence.*;
 @Setter
 @Table(name = "app_node")
 public class Node {
+    @Id
+    @GeneratedValue
+    private Long id;
     private Long fileid;
     private int nodeid;
     private double x;
     private double y;
     private double z;
     private double temp;
+
     public Node(Long fileid, int id, int x, int y, int z, double temp){
         this.fileid=fileid;
         this.nodeid=id;

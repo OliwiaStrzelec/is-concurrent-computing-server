@@ -1,11 +1,11 @@
 package com.server.repository;
 
-import com.server.model.Files;
+import com.server.model.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FileRepository extends JpaRepository<Files,Long> {
-    List<Files> findDistinctByFil(String filename);
+public interface FileRepository extends JpaRepository<File,Long> {
+    List<File> findByNameOrderByAddedDesc(String filename);
 
 }
